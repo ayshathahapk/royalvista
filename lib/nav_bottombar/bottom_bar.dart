@@ -43,7 +43,7 @@ class _BottomBarPageState extends State<BottomBarPage> {
               primaryColor: Colors.red,
               textTheme: Theme.of(context)
                   .textTheme
-                  .copyWith(caption: new TextStyle(color: Colors.yellow))),
+                  .copyWith(labelMedium: new TextStyle(color: Colors.yellow))),
           child: BottomNavigationBar(
             currentIndex: _currentIndex,
             showSelectedLabels: true,

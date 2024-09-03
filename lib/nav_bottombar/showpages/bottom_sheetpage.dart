@@ -25,7 +25,7 @@ class _BottomsheetState extends State<Bottomsheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height * 0.2,
+      height: height * 0.3,
       width: width,
       child: Padding(
         padding: EdgeInsets.all(16.0),
