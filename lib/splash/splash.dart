@@ -2,9 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:royalvista/Core/app_export.dart';
-
-import '../Core/Utils/image_constant.dart';
-import '../Core/Utils/size_utils.dart';
 import '../New/LivePage/Screens/live_page_initialising.dart';
 import '../New/NavigationBar/navigation_bar.dart';
 

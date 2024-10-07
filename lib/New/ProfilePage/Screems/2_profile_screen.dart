@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:royalvista/Core/Utils/firebase_constants.dart';
 import 'package:royalvista/Core/Utils/size_utils.dart';
-
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../../Core/CommenWidgets/custom_image_view.dart';
 import '../../../Core/CommenWidgets/space.dart';
 import '../../../Core/Theme/new_custom_text_style.dart';
@@ -73,7 +72,7 @@ class _ProfileScreen2State extends ConsumerState<ProfileScreen2> {
 
   void _launchWhatsApp() async {
     final Uri url = Uri.parse(
-        'https://wa.me/+971542172259'); // Replace with your WhatsApp link
+        'https://wa.me/${FirebaseConstants.whatsapp}'); // Replace with your WhatsApp link
     if (!await launchUrl(url)) {
       throw 'Could not launch $url';
     }
@@ -81,23 +80,23 @@ class _ProfileScreen2State extends ConsumerState<ProfileScreen2> {
 
   void _launchMail() async {
     final Uri url = Uri.parse(
-        'mailto:pulparambilgold@gmail.com'); // Replace with your mail link
+        'mailto:${FirebaseConstants.mail}'); // Replace with your mail link
     if (!await launchUrl(url)) {
       throw 'Could not launch $url';
     }
   }
 
   void _launchContact() async {
-    final Uri url =
-        Uri.parse('tel:+971506478995'); // Replace with your contact number
+    final Uri url = Uri.parse(
+        'tel:${FirebaseConstants.phone}'); // Replace with your contact number
     if (!await launchUrl(url)) {
       throw 'Could not launch $url';
     }
   }
 
   void _launchMap() async {
-    final Uri url = Uri.parse(
-        'https://www.google.com/maps/search/?api=1&query=25.2737112,55.2999215'); // Replace with your map link
+    final Uri url =
+        Uri.parse(FirebaseConstants.location); // Replace with your map link
     if (!await launchUrl(url)) {
       throw 'Could not launch $url';
     }
@@ -107,7 +106,7 @@ class _ProfileScreen2State extends ConsumerState<ProfileScreen2> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(10.h),
+        padding: EdgeInsets.only(left: 16.h, right: 16.h),
         width: SizeUtils.width,
         height: SizeUtils.height,
         decoration: const BoxDecoration(
@@ -118,7 +117,7 @@ class _ProfileScreen2State extends ConsumerState<ProfileScreen2> {
           children: [
             CustomImageView(
               imagePath: ImageConstants.logo,
-              width: 90.h,
+              width: 120.h,
             ),
             space(),
             Text(
@@ -129,7 +128,7 @@ class _ProfileScreen2State extends ConsumerState<ProfileScreen2> {
               '24 / 7 Support',
               style: CustomPoppinsTextStyles.bodyText1White,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.v),
             Expanded(
               flex: 0,
               child: GridView.count(
@@ -142,7 +141,7 @@ class _ProfileScreen2State extends ConsumerState<ProfileScreen2> {
                     context,
                     FontAwesomeIcons.whatsapp,
                     'WhatsApp',
-                    '+971542172259',
+                    FirebaseConstants.whatsapp,
                     _launchWhatsApp,
                   ),
                   _buildCard(
@@ -156,7 +155,7 @@ class _ProfileScreen2State extends ConsumerState<ProfileScreen2> {
                     context,
                     FontAwesomeIcons.phone,
                     'Call Us',
-                    '+971506478995',
+                    FirebaseConstants.phone,
                     _launchContact,
                   ),
                   _buildCard(

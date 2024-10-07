@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:royalvista/Core/Utils/snackbar_dialogs.dart';
-import 'package:royalvista/New/RatePage/Repoitory/rate_repository.dart';
 
+import '../../../Core/Utils/snackbar_dialogs.dart';
 import '../../../Models/alertValue_model.dart';
+import '../Repoitory/rate_repository.dart';
 
 final rateController = Provider(
   (ref) => RateController(repository: ref.watch(rateRepository)),

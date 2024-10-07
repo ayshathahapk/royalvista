@@ -10,6 +10,7 @@ import '../../../Core/Theme/new_custom_text_style.dart';
 import '../../../Core/Theme/theme_helper.dart';
 import '../../../Core/Utils/size_utils.dart';
 import '../../../Models/alertValue_model.dart';
+import '../../LivePage/Controller/live_controller.dart';
 import '../../LivePage/Repository/live_repository.dart';
 import '../../LivePage/Screens/live_page.dart';
 import '../Controller/rate_controller.dart';
@@ -82,14 +83,39 @@ class _RatePageState extends ConsumerState<RatePage> {
                   children: [
                     Consumer(
                       builder: (context, ref1, child) {
-                        final spreadNow = ref1.watch(spreadDataProvider2);
                         final liveRateData = ref1.watch(liveRateProvider);
-                        ref1.watch(rateBidValue);
-                        final res = ref1.watch(rateBidValue);
-                        return Text(
-                          "\$${(liveRateData?.gold.bid ?? 0 + (spreadNow?.editedBidSpreadValue ?? 0)).toStringAsFixed(2)}",
-                          style: CustomPoppinsTextStyles.bodyText1White,
+                        return ref1.watch(spotRateProvider).when(
+                          data: (data) {
+                            final spreadNow = data?.info;
+                            return Text(
+                              (liveRateData?.gold?.bid ??
+                                      0 + (spreadNow?.goldBidSpread ?? 0))
+                                  .toStringAsFixed(2),
+                              style: CustomPoppinsTextStyles.bodyText1White2,
+                            );
+                          },
+                          error: (error, stackTrace) {
+                            return Text(
+                              "0",
+                              style: CustomPoppinsTextStyles.bodyText1White2,
+                            );
+                          },
+                          loading: () {
+                            return Text(
+                              "0",
+                              style: CustomPoppinsTextStyles.bodyText1White2,
+                            );
+                          },
                         );
+                        // final spreadNow = ref1.watch(spreadDataProvider2);
+                        // final liveRateData = ref1.watch(liveRateProvider);
+                        // ref1.watch(rateBidValue);
+                        // final res = ref1.watch(spreadDataProvider2);
+                        // return Text(
+                        //   res.toString(),
+                        //   // "\$${(liveRateData?.gold.bid ?? 0 + (spreadNow?.editedBidSpreadValue ?? 0)).toStringAsFixed(2)}",
+                        //   style: CustomPoppinsTextStyles.bodyText1White,
+                        // );
                       },
                     ),
                   ],
@@ -147,7 +173,7 @@ class _RatePageState extends ConsumerState<RatePage> {
                     borderRadius: BorderRadius.circular(
                       10.h,
                     ),
-                    side: BorderSide(
+                    side: const BorderSide(
                         color: CupertinoColors.systemYellow, width: 2),
                   ),
                 ),
@@ -218,7 +244,7 @@ class _RatePageState extends ConsumerState<RatePage> {
           ),
           child: SwipeButton(
             inactiveTrackColor: appTheme.gray800,
-            activeTrackColor: appTheme.gold,
+            activeTrackColor: appTheme.mainBlue,
             thumbPadding: const EdgeInsets.all(3),
             thumb: const Icon(
               Icons.chevron_right,
@@ -282,10 +308,15 @@ class _RatePageState extends ConsumerState<RatePage> {
                                 ]),
                             child: Card(
                               elevation: 0,
-                              color: appTheme.gold,
+                              color: appTheme.mainBlue,
                               child: ListTile(
-                                trailing: Icon(CupertinoIcons.alarm),
-                                leading: Text((index + 1).toString()),
+                                trailing: Icon(CupertinoIcons.alarm,
+                                    color: appTheme.whiteA700),
+                                leading: Text(
+                                  (index + 1).toString(),
+                                  style: GoogleFonts.poppins(
+                                      color: appTheme.whiteA700),
+                                ),
                                 title: Text(
                                   "${data[index].alertValue}",
                                   style: GoogleFonts.poppins(

@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:royalvista/Core/Utils/failure.dart';
-import 'package:royalvista/Core/Utils/firebase_constants.dart';
-import 'package:royalvista/Core/Utils/firebase_provider.dart';
-import 'package:royalvista/Core/Utils/type_def.dart';
-import 'package:royalvista/Models/alertValue_model.dart';
+
+import '../../../Core/Utils/failure.dart';
+import '../../../Core/Utils/firebase_constants.dart';
+import '../../../Core/Utils/firebase_provider.dart';
+import '../../../Core/Utils/type_def.dart';
+import '../../../Models/alertValue_model.dart';
 
 final rateRepository = Provider(
   (ref) {
