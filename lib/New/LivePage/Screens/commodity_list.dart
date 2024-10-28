@@ -180,6 +180,7 @@ class CommodityList extends ConsumerWidget {
                                                         Math.pow(
                                                             10,
                                                             (commodities.purity
+                                                                    .ceil()
                                                                     .toString())
                                                                 .length)) +
                                                 commodities.sellCharge;
@@ -210,6 +211,7 @@ class CommodityList extends ConsumerWidget {
                                                         Math.pow(
                                                             10,
                                                             (commodities.purity
+                                                                    .ceil()
                                                                     .toString())
                                                                 .length)) +
                                                 commodities.sellCharge;
@@ -295,6 +297,7 @@ class CommodityList extends ConsumerWidget {
                                                         Math.pow(
                                                             10,
                                                             (commodities.purity
+                                                                    .ceil()
                                                                     .toString())
                                                                 .length)) +
                                                 commodities.sellCharge;
@@ -332,6 +335,7 @@ class CommodityList extends ConsumerWidget {
                                                         Math.pow(
                                                             10,
                                                             (commodities.purity
+                                                                    .ceil()
                                                                     .toString())
                                                                 .length)) +
                                                 commodities.sellCharge;
@@ -410,6 +414,7 @@ class CommodityList extends ConsumerWidget {
                                                         Math.pow(
                                                             10,
                                                             (commodities.purity
+                                                                    .ceil()
                                                                     .toString())
                                                                 .length)) +
                                                 commodities.sellCharge;
@@ -440,6 +445,7 @@ class CommodityList extends ConsumerWidget {
                                                         Math.pow(
                                                             10,
                                                             (commodities.purity
+                                                                    .ceil()
                                                                     .toString())
                                                                 .length)) +
                                                 commodities.sellCharge;

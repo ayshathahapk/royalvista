@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:timezone/timezone.dart' as tz;
 import 'package:auto_scroll_text/auto_scroll_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -94,12 +93,6 @@ class _LivePageState extends ConsumerState<LivePage> {
     super.dispose();
   }
 
-  DateTime convertToTimeZone(DateTime dateTime, String timeZone) {
-    final location = tz.getLocation(timeZone);
-    final tz.TZDateTime tzDateTime = tz.TZDateTime.from(dateTime, location);
-    return tzDateTime;
-  }
-
   String ukTimeString = "";
   String bdTimeString = "";
   String inTimeString = "";
@@ -115,15 +108,9 @@ class _LivePageState extends ConsumerState<LivePage> {
     DateTime now = DateTime.now();
 
     // Convert to UK and Bangladesh time
-    DateTime ukTime = convertToTimeZone(now, ukTimeZone);
-    DateTime bdTime = convertToTimeZone(now, bdTimeZone);
-    DateTime localTime = convertToTimeZone(now, currentTimeZone);
-    DateTime uaeTime = convertToTimeZone(now, uaeTimeZone);
+
     // Format the time as needed
-    ukTimeString = DateFormat('h:mm:ss a\nEEEE').format(ukTime);
-    bdTimeString = DateFormat('h:mm:ss a\nEEEE').format(bdTime);
-    inTimeString = DateFormat('h:mm:ss a\nEEEE').format(localTime);
-    uaeTimeString = DateFormat('h:mm:ss a\nEEEE').format(uaeTime);
+
     ref.read(bdTimeProvider.notifier).update(
           (state) => bdTimeString,
         );
@@ -246,21 +233,25 @@ class _LivePageState extends ConsumerState<LivePage> {
                               ref1.read(goldAskPrice.notifier).update(
                                 (state) {
                                   final res = (liveRateData.gold!.bid +
-                                      (spreadNow.goldAskSpread));
+                                      (spreadNow.goldBidSpread));
                                   return res;
                                 },
                               );
                               ref1.read(silverAskPrice.notifier).update(
                                 (state) {
-                                  final res = (liveRateData.gold!.bid +
-                                      (spreadNow.goldAskSpread) +
-                                      (spreadNow.goldBidSpread) +
+                                  final res = (((liveRateData.gold!.bid +
+                                              (spreadNow.goldAskSpread)) +
+                                          (spreadNow.goldBidSpread)) +
                                       0.5);
                                   return res;
                                 },
                               );
                             },
                           );
+                          print("Sell${spreadNow.goldAskSpread}");
+                          print("Sell${spreadNow.silverAskSpread}");
+                          print("Buy${spreadNow.silverBidSpread}");
+                          print("Buy${spreadNow.goldBidSpread}");
                           return Column(
                             children: [
                               Container(
@@ -325,7 +316,7 @@ class _LivePageState extends ConsumerState<LivePage> {
                                           value: (((liveRateData.gold!.bid +
                                                       spreadNow.goldBidSpread) +
                                                   spreadNow.goldAskSpread) +
-                                              0.05),
+                                              0.5),
                                           // value: ref1.watch(silverAskPrice),
                                           // value: (liveRateData.gold.bid +
                                           //     (spreadNow?.editedBidSpreadValue ??
