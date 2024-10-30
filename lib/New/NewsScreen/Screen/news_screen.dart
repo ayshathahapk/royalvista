@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import '../../../Core/CommenWidgets/space.dart';
 import '../../../Core/Theme/new_custom_text_style.dart';
@@ -39,10 +40,11 @@ class _NewsScreenState extends ConsumerState<NewsScreen> {
                   ImageConstants.logo,
                   width: SizeUtils.width * 0.30,
                 ),
+                space(),
                 Text(
                   DateFormat('MMM/dd/yyyy-h:mm a').format(DateTime.now()),
-                  style: const TextStyle(
-                      color: Colors.white,
+                  style: GoogleFonts.poppins(
+                      color: appTheme.mainBlue,
                       fontSize: 18,
                       fontWeight: FontWeight.bold),
                 ),
@@ -51,10 +53,12 @@ class _NewsScreenState extends ConsumerState<NewsScreen> {
                 ),
                 Align(
                     alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Latest News",
-                      style: CustomPoppinsTextStyles.bodyText2White,
-                    )),
+                    child: Text("Latest News",
+                        style: GoogleFonts.poppins(
+                            // fontFamily: marine,
+                            color: appTheme.gray800,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 35.fSize))),
                 space(h: 10.h),
                 Consumer(
                   builder: (context, ref1, child) {

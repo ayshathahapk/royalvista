@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import '../../Core/CommenWidgets/custom_image_view.dart';
 import '../../Core/CommenWidgets/noNetworkScreen.dart';
@@ -163,47 +165,85 @@ class _NavigationBarState extends ConsumerState<NavigationBarScreen> {
             },
           ),
         ),
-        bottomNavigationBar: CurvedNavigationBar(
-          height: SizeUtils.height * 0.07,
-          key: _bottomNavigationKey,
-          index: 0,
-          items: <Widget>[
-            CustomImageView(
-              color: appTheme.whiteA700,
-              width: 30.adaptSize,
-              imagePath: ImageConstants.chartLogo,
-            ),
-            CustomImageView(
-              color: appTheme.whiteA700,
-              width: 30.adaptSize,
-              imagePath: ImageConstants.notificationLogo,
-            ),
-            CustomImageView(
-              color: appTheme.whiteA700,
-              width: 30.adaptSize,
-              imagePath: ImageConstants.userLogo,
-            ),
-          ],
-          color: appTheme.mainBlue,
-          buttonBackgroundColor: appTheme.mainBlue,
-          backgroundColor: const Color(0xffeeeeee),
-          animationCurve: Curves.easeInOut,
-          animationDuration: const Duration(milliseconds: 500),
-          onTap: (index) {
-            if (index == 2) {
-              // _onItemTapped(index);
+        // bottomNavigationBar: CurvedNavigationBar(
+        //   height: SizeUtils.height * 0.07,
+        //   key: _bottomNavigationKey,
+        //   index: 0,
+        //   items: <Widget>[
+        //     CustomImageView(
+        //       color: appTheme.whiteA700,
+        //       width: 30.adaptSize,
+        //       imagePath: ImageConstants.chartLogo,
+        //     ),
+        //     CustomImageView(
+        //       color: appTheme.whiteA700,
+        //       width: 30.adaptSize,
+        //       imagePath: ImageConstants.notificationLogo,
+        //     ),
+        //     CustomImageView(
+        //       color: appTheme.whiteA700,
+        //       width: 30.adaptSize,
+        //       imagePath: ImageConstants.userLogo,
+        //     ),
+        //   ],
+        //   color: appTheme.mainBlue,
+        //   buttonBackgroundColor: appTheme.mainBlue,
+        //   backgroundColor: const Color(0xffeeeeee),
+        //   animationCurve: Curves.easeInOut,
+        //   animationDuration: const Duration(milliseconds: 500),
+        //   onTap: (index) {
+        //     if (index == 2) {
+        //       // _onItemTapped(index);
+        //       showModalBottomSheet(
+        //         backgroundColor: appTheme.whiteA700,
+        //         context: context,
+        //         builder: (BuildContext context) {
+        //           return showBottomSheetScreen(context: context);
+        //         },
+        //       );
+        //     } else {
+        //       _onItemTapped(index);
+        //     }
+        //   },
+        //   letIndexChange: (index) => true,
+        // ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: ref.watch(_selectedIndex),
+          selectedItemColor: appTheme.gold,
+          unselectedItemColor: appTheme.whiteA700,
+          onTap: (value) {
+            if (value == 2) {
               showModalBottomSheet(
                 backgroundColor: appTheme.whiteA700,
                 context: context,
                 builder: (BuildContext context) {
-                  return showBottomSheetScreen(context: context);
+                  return showBottomSheetScreen(
+                    context: context,
+                  );
                 },
               );
             } else {
-              _onItemTapped(index);
+              _onItemTapped(value);
             }
           },
-          letIndexChange: (index) => true,
+          key: _bottomNavigationKey,
+          backgroundColor: appTheme.mainBlue,
+          selectedLabelStyle: GoogleFonts.poppins(fontSize: 12.fSize),
+          unselectedLabelStyle: GoogleFonts.poppins(fontSize: 12.fSize),
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(FluentIcons.pulse_square_24_regular),
+              label: 'Spot',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(FluentIcons.alert_on_24_regular),
+              label: 'Rate Alert',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(FluentIcons.apps_48_regular),
+              label: 'More',
+            ),
+          ],
         ),
       ),
     );

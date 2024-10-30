@@ -248,10 +248,10 @@ class _LivePageState extends ConsumerState<LivePage> {
                               );
                             },
                           );
-                          print("Sell${spreadNow.goldAskSpread}");
-                          print("Sell${spreadNow.silverAskSpread}");
-                          print("Buy${spreadNow.silverBidSpread}");
-                          print("Buy${spreadNow.goldBidSpread}");
+                          // print("Sell${spreadNow.goldAskSpread}");
+                          // print("Sell${spreadNow.silverAskSpread}");
+                          // print("Buy${spreadNow.silverBidSpread}");
+                          // print("Buy${spreadNow.goldBidSpread}");
                           return Column(
                             children: [
                               Container(
@@ -377,11 +377,13 @@ class _LivePageState extends ConsumerState<LivePage> {
                                       children: [
                                         ValueDisplayWidgetSilver1(
                                             // value: 0,
-                                            value: (liveRateData.silver?.bid ??
-                                                0 +
-                                                    (spreadNow
-                                                            .silverBidSpread ??
-                                                        0))),
+                                            value: double.parse((liveRateData
+                                                        .silver?.bid ??
+                                                    0 +
+                                                        (spreadNow
+                                                                .silverBidSpread ??
+                                                            0))
+                                                .toStringAsFixed(2))),
                                         Row(
                                           children: [
                                             Icon(
@@ -391,7 +393,11 @@ class _LivePageState extends ConsumerState<LivePage> {
                                               size: 20.v,
                                             ),
                                             Text(
-                                              "${liveRateData.silver?.low ?? 0 + (spreadNow.silverLowMargin)}",
+                                              (liveRateData.silver?.low ??
+                                                      0 +
+                                                          (spreadNow
+                                                              .silverLowMargin))
+                                                  .toStringAsFixed(2),
                                               style: CustomPoppinsTextStyles
                                                   .bodyTextSemiBold,
                                             )
@@ -405,11 +411,14 @@ class _LivePageState extends ConsumerState<LivePage> {
                                       children: [
                                         ValueDisplayWidgetSilver2(
                                             // value: 0,
-                                            value: (((liveRateData.silver!.bid +
+                                            value: double.parse((((liveRateData
+                                                                .silver!.bid +
+                                                            spreadNow
+                                                                .silverBidSpread) +
                                                         spreadNow
-                                                            .silverBidSpread) +
-                                                    spreadNow.silverAskSpread) +
-                                                0.05)),
+                                                            .silverAskSpread) +
+                                                    0.05)
+                                                .toStringAsFixed(2))),
                                         Row(
                                           children: [
                                             Icon(
@@ -419,7 +428,11 @@ class _LivePageState extends ConsumerState<LivePage> {
                                               size: 20.v,
                                             ),
                                             Text(
-                                              "${liveRateData.silver?.high ?? 0 + (spreadNow.silverHighMargin)}",
+                                              (liveRateData.silver?.high ??
+                                                      0 +
+                                                          (spreadNow
+                                                              .silverHighMargin))
+                                                  .toStringAsFixed(2),
                                               style: CustomPoppinsTextStyles
                                                   .bodyTextSemiBold,
                                             )
