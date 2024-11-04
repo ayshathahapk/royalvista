@@ -757,7 +757,7 @@ class _LivePageState extends ConsumerState<LivePage> {
                   slverPrice: ref2.watch(silverAskPrice),
                 ),
               ),
-              space(),
+
               Consumer(
                 builder: (context, ref1, child) {
                   return ref1.watch(newsProvider).when(
