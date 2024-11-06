@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import '../../Core/CommenWidgets/CustomElevatedButton/custom_elevated_button.dart';
+import '../../Core/CommenWidgets/custom_image_view.dart';
 import '../../Core/CommenWidgets/custom_text_field.dart';
 import '../../Core/CommenWidgets/space.dart';
 import '../../Core/Theme/new_custom_text_style.dart';
@@ -94,9 +95,20 @@ class _DetailsState extends ConsumerState<Details> {
             child: Column(
               children: [
                 space(),
-                Image.asset(
-                  ImageConstants.logo,
-                  width: SizeUtils.width * 0.30,
+                Column(
+                  children: [
+                    CustomImageView(
+                      imagePath: ImageConstants.logo,
+                      width: 110.h,
+                    ),
+                    Text(
+                      "ROYAL VISTA",
+                      style: GoogleFonts.poppins(
+                          color: appTheme.gold,
+                          fontSize: 25.fSize,
+                          fontWeight: FontWeight.w500),
+                    )
+                  ],
                 ),
                 space(),
                 Text(

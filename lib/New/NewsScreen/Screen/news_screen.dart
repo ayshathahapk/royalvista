@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import '../../../Core/CommenWidgets/custom_image_view.dart';
 import '../../../Core/CommenWidgets/space.dart';
 import '../../../Core/Theme/new_custom_text_style.dart';
 import '../../../Core/Theme/theme_helper.dart';
@@ -36,9 +37,20 @@ class _NewsScreenState extends ConsumerState<NewsScreen> {
             padding: EdgeInsets.only(top: 30.v, left: 28.h, right: 28.h),
             child: Column(
               children: [
-                Image.asset(
-                  ImageConstants.logo,
-                  width: SizeUtils.width * 0.30,
+                Column(
+                  children: [
+                    CustomImageView(
+                      imagePath: ImageConstants.logo,
+                      width: 110.h,
+                    ),
+                    Text(
+                      "ROYAL VISTA",
+                      style: GoogleFonts.poppins(
+                          color: appTheme.gold,
+                          fontSize: 25.fSize,
+                          fontWeight: FontWeight.w500),
+                    )
+                  ],
                 ),
                 space(),
                 Text(

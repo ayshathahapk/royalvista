@@ -36,15 +36,7 @@ class _LivePageState extends ConsumerState<LivePage> {
   final formattedTimeProvider = StateProvider(
     (ref) => DateFormat('h:mm a').format(DateTime.now()),
   );
-  final bdTimeProvider = StateProvider(
-    (ref) => "",
-  );
-  final uaeTimeProvider = StateProvider(
-    (ref) => "",
-  );
-  final usTimeProvider = StateProvider(
-    (ref) => "",
-  );
+
   @override
   void initState() {
     super.initState();
@@ -53,7 +45,6 @@ class _LivePageState extends ConsumerState<LivePage> {
       const Duration(minutes: 1),
       (timer) {
         _updateTime(timer);
-        convertTimes(timer);
       },
     );
   }
@@ -70,56 +61,10 @@ class _LivePageState extends ConsumerState<LivePage> {
         );
   }
 
-  double getUnitMultiplier(String weight) {
-    switch (weight) {
-      case "GM":
-        return 1;
-      case "KG":
-        return 1000;
-      case "TTB":
-        return 116.6400;
-      case "TOLA":
-        return 11.664;
-      case "OZ":
-        return 31.1034768;
-      default:
-        return 1;
-    }
-  }
-
   @override
   void dispose() {
     _timer.cancel();
     super.dispose();
-  }
-
-  String ukTimeString = "";
-  String bdTimeString = "";
-  String inTimeString = "";
-  String uaeTimeString = "";
-  void convertTimes(Timer timer) {
-    // Example timezones
-    const String ukTimeZone = 'America/New_York';
-    const String bdTimeZone = 'Asia/Dhaka';
-    const String currentTimeZone = 'Asia/Kolkata';
-    const String uaeTimeZone = 'Asia/Dubai';
-
-    // Current time in your local timezone
-    DateTime now = DateTime.now();
-
-    // Convert to UK and Bangladesh time
-
-    // Format the time as needed
-
-    ref.read(bdTimeProvider.notifier).update(
-          (state) => bdTimeString,
-        );
-    ref.read(usTimeProvider.notifier).update(
-          (state) => ukTimeString,
-        );
-    ref.read(uaeTimeProvider.notifier).update(
-          (state) => uaeTimeString,
-        );
   }
 
   final bannerBool = StateProvider.autoDispose(
@@ -177,9 +122,7 @@ class _LivePageState extends ConsumerState<LivePage> {
                   )
                 ],
               ),
-              space(),
-              space(),
-              space(),
+              space(h: 80.v),
               Container(
                 height: 55.h,
                 decoration: BoxDecoration(
@@ -794,9 +737,20 @@ class _LivePageState extends ConsumerState<LivePage> {
         ),
         Align(
           alignment: Alignment.topCenter,
-          child: CustomImageView(
-            imagePath: ImageConstants.logo,
-            width: 110.h,
+          child: Column(
+            children: [
+              CustomImageView(
+                imagePath: ImageConstants.logo,
+                width: 110.h,
+              ),
+              Text(
+                "ROYAL VISTA",
+                style: GoogleFonts.poppins(
+                    color: appTheme.gold,
+                    fontSize: 25.fSize,
+                    fontWeight: FontWeight.w500),
+              )
+            ],
           ),
         ),
         if (ref.watch(bannerBool))

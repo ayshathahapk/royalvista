@@ -36,7 +36,7 @@ class _NavigationBarState extends ConsumerState<NavigationBarScreen> {
     // RatePage(),
     // ProfileScreen2(),
   ];
-  final isConnectedToInternet = StateProvider<bool>((ref) => false);
+  final isConnectedToInternet = StateProvider<bool>((ref) => true);
   final _selectedIndex = StateProvider(
     (ref) => 0,
   );

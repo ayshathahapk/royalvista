@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:royalvista/Core/Utils/firebase_constants.dart';
 import 'package:royalvista/Core/Utils/size_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -115,9 +116,20 @@ class _ProfileScreen2State extends ConsumerState<ProfileScreen2> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomImageView(
-              imagePath: ImageConstants.logo,
-              width: 120.h,
+            Column(
+              children: [
+                CustomImageView(
+                  imagePath: ImageConstants.logo,
+                  width: 110.h,
+                ),
+                Text(
+                  "ROYAL VISTA",
+                  style: GoogleFonts.poppins(
+                      color: appTheme.gold,
+                      fontSize: 25.fSize,
+                      fontWeight: FontWeight.w500),
+                )
+              ],
             ),
             space(),
             Text(

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:royalvista/Core/app_export.dart';
 import '../New/LivePage/Screens/live_page_initialising.dart';
 import '../New/NavigationBar/navigation_bar.dart';
@@ -33,13 +34,29 @@ class _SplashState extends ConsumerState<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF500404),
-      body: Center(
-        child: Container(
-          height: SizeUtils.height * 0.3,
-          width: SizeUtils.height * 0.3,
-          child: Image.asset(
-            ImageConstants.logo,
+      body: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(ImageConstants.logoBg), fit: BoxFit.cover)),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                height: SizeUtils.height * 0.3,
+                width: SizeUtils.height * 0.3,
+                child: Image.asset(
+                  ImageConstants.logo,
+                ),
+              ),
+              Text(
+                "ROYAL VISTA",
+                style: GoogleFonts.poppins(
+                    color: appTheme.gold,
+                    fontSize: 25.fSize,
+                    fontWeight: FontWeight.w500),
+              )
+            ],
           ),
         ),
       ),
