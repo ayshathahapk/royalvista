@@ -31,7 +31,7 @@ class _NavigationBarState extends ConsumerState<NavigationBarScreen> {
   List<Widget> pages = [
     // LivePage(),
     LiveRatesWidget(),
-    RatePage(),
+    const RatePage(),
 
     // RatePage(),
     // ProfileScreen2(),
@@ -165,48 +165,6 @@ class _NavigationBarState extends ConsumerState<NavigationBarScreen> {
             },
           ),
         ),
-        // bottomNavigationBar: CurvedNavigationBar(
-        //   height: SizeUtils.height * 0.07,
-        //   key: _bottomNavigationKey,
-        //   index: 0,
-        //   items: <Widget>[
-        //     CustomImageView(
-        //       color: appTheme.whiteA700,
-        //       width: 30.adaptSize,
-        //       imagePath: ImageConstants.chartLogo,
-        //     ),
-        //     CustomImageView(
-        //       color: appTheme.whiteA700,
-        //       width: 30.adaptSize,
-        //       imagePath: ImageConstants.notificationLogo,
-        //     ),
-        //     CustomImageView(
-        //       color: appTheme.whiteA700,
-        //       width: 30.adaptSize,
-        //       imagePath: ImageConstants.userLogo,
-        //     ),
-        //   ],
-        //   color: appTheme.mainBlue,
-        //   buttonBackgroundColor: appTheme.mainBlue,
-        //   backgroundColor: const Color(0xffeeeeee),
-        //   animationCurve: Curves.easeInOut,
-        //   animationDuration: const Duration(milliseconds: 500),
-        //   onTap: (index) {
-        //     if (index == 2) {
-        //       // _onItemTapped(index);
-        //       showModalBottomSheet(
-        //         backgroundColor: appTheme.whiteA700,
-        //         context: context,
-        //         builder: (BuildContext context) {
-        //           return showBottomSheetScreen(context: context);
-        //         },
-        //       );
-        //     } else {
-        //       _onItemTapped(index);
-        //     }
-        //   },
-        //   letIndexChange: (index) => true,
-        // ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: ref.watch(_selectedIndex),
           selectedItemColor: appTheme.gold,
